@@ -26,6 +26,6 @@ services:
       - key: PYTHON_VERSION
         value: "3.10"
       - key: API_URL
-        value: "https://fraud-detection-api.onrender.com"
+        value: "https://fraud-detection-api-rm30.onrender.com"
       - key: PORT
         value: "8501"
