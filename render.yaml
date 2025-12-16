@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: fraud-detection-api
+    env: python
+    plan: free
+    pythonVersion: 3.10
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m uvicorn api.main:app --host 0.0.0.0 --port 8000"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.10"
+      - key: PORT
+        value: "8000"
+    routes:
+      - path: /
+        methods: [GET]
+
+  - type: web
+    name: fraud-detection-ui
+    env: python
+    plan: free
+    pythonVersion: 3.10
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run app.py --server.port=8501 --server.address=0.0.0.0"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.10"
+      - key: API_URL
+        value: "https://fraud-detection-api.onrender.com"
+      - key: PORT
+        value: "8501"
